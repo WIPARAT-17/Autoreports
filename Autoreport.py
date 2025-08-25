@@ -99,6 +99,13 @@ def start_download():
         # === 🔄 Loop หน้า Report ===
         driver.get(REPORT_URL)
 
+        # 🆕 เพิ่มโค้ดส่วนนี้เพื่อสร้างโฟลเดอร์สำหรับวันที่ปัจจุบัน
+        daily_folder_name = datetime.now().strftime("%d%m%Y")
+        daily_target_dir = os.path.join(TARGET_DIR, daily_folder_name)
+        if not os.path.exists(daily_target_dir):
+            os.makedirs(daily_target_dir)
+            log(f"📁 สร้างโฟลเดอร์สำหรับวันนี้: {daily_folder_name}")
+
         while True:
             # ✅ ดึงลิงก์ทั้งหมดในหน้าปัจจุบันแค่ครั้งเดียว
             report_links = WebDriverWait(driver, 300).until(
@@ -162,9 +169,11 @@ def start_download():
                         
                         if download_complete:
                             file_ext = os.path.splitext(latest_file)[1]
-                            timestamp = datetime.now().strftime("%Y-%m-%d")
+                            timestamp = datetime.now().strftime("%d%m%Y")
                             new_name = f"{timestamp}_{name.replace(' ', '_').replace('/', '-')}{file_ext}"
-                            shutil.move(latest_file, os.path.join(TARGET_DIR, new_name))
+                            
+                            # 🆕 ใช้ daily_target_dir ใหม่ที่สร้างขึ้น
+                            shutil.move(latest_file, os.path.join(daily_target_dir, new_name))
                             log(f"✅ บันทึกสำเร็จ: {new_name}")
                             success_count += 1
                             success = True
