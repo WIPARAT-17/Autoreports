@@ -13,17 +13,17 @@ import shutil
 from datetime import datetime
 
 # === 🧾 Credentials และ URLs ===
-USERNAME = "csoc_reports"
-PASSWORD = "csoc@reports"
+"username": "your_username_here",  # ← แก้ไขชื่อผู้ใช้ของคุณ
+"password": "your_password_here",  # ← แก้ไขรหัสผ่านของคุณ
 LOGIN_URL = "http://nmsgov.ntcsoc.net/Orion/Login.aspx"
 REPORT_URL = "http://nmsgov.ntcsoc.net/Orion/reports/viewreports.aspx"
 
 # === 📥 กำหนดโฟลเดอร์สำหรับดาวน์โหลด ===
 DOWNLOAD_DIR = os.path.join(os.path.expanduser("~"), "Downloads", "temp_downloads")
-TARGET_DIR = r"C:\Users\1705w\OneDrive\Desktop\Autoreport\Report"
+TARGET_DIR = r"C:\Users\ชื่อผู้ใช้ใหม่\เส้นทางt\Report"
 
 # ✅ กำหนด Path สำหรับ Edge Driver ที่ดาวน์โหลดด้วยตัวเอง
-edge_driver_path = r"C:\Users\1705w\Downloads\edgedriver_win32\msedgedriver.exe"
+edge_driver_path = r"C:\Users\ชื่อผู้ใช้ใหม่\เส้นทาง\msedgedriver.exe"
 
 # === 📜 ฟังก์ชันแสดง Log ใน Console ===
 def log(text):
@@ -215,3 +215,4 @@ def start_download():
         log(f"⏰ ใช้เวลาทั้งหมด: {round(time.time() - start_time)} วินาที")
 
 start_download()
+
