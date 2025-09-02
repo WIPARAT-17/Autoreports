@@ -43,7 +43,7 @@ edge_driver_path = r"C:\path\to\your\target\folder\msedgedriver.exe"
 # หมายเหตุ: ใช้ App Password แทนรหัสผ่านปกติเพื่อความปลอดภัย
 EMAIL_ADDRESS = "your_email@gmail.com"
 EMAIL_PASSWORD = "your_app_password"
-RECIPIENT_EMAIL = "recipient_email@example.com"
+RECIPIENT_EMAIL = ["recipient_email@example.com", "recipient_email@example.com"]
 
 
 # 🆕 เพิ่มการตั้งค่าเซิร์ฟเวอร์ SMTP และ Port
@@ -70,7 +70,7 @@ def send_email_with_attachments(sender_email, sender_password, recipient_email, 
     try:
         msg = MIMEMultipart()
         msg['From'] = sender_email
-        msg['To'] = recipient_email
+        msg['To'] = ", ".join(recipient_email)
         msg['Subject'] = subject
 
         msg.attach(MIMEText(body, 'plain', 'utf-8'))
@@ -287,5 +287,6 @@ def start_download():
             subject = EMAIL_SUBJECT.format(month=datetime.now().strftime('%m'), year=datetime.now().strftime('%Y'))
             body = EMAIL_BODY
             send_email_with_attachments(EMAIL_ADDRESS, EMAIL_PASSWORD, RECIPIENT_EMAIL, subject, body, downloaded_files)
+
 
 start_download()
