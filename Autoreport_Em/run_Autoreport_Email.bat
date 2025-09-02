@@ -1,3 +1,4 @@
 @echo off
-"C:\Users\1705w\AppData\Local\Programs\Python\Python313\python.exe" "C:\Users\1705w\OneDrive\Desktop\Autoreport\Autoreport_Email\Atureport_Email.py"
+"C:\path\to\your\target\folder\python.exe" "C:\path\to\your\target\folder\Atureport_Email.py"
+
 pause
